@@ -13,5 +13,7 @@ int main(int argc, char *argv[])
     Drzewo.przedstawSie();
     InneDrzewo.przedstawSie();
 
+    jakieś zmiany
+
     return 0;
 }
