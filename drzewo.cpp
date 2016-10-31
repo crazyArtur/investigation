@@ -1,15 +1,13 @@
 #include "drzewo.h"
 
-drzewo::drzewo(){
-    int wiek = 0;
-    string kimJestem = "drzewem";
+void Drzewo::przedstawSie(){
+    cout << "Hey! Jestem " << imie << ". Mam " << wiek << " lat." << endl;
 }
-
-drzewo::drzewo(int a, string j){
-    int wiek = a;
-    string kimJestem = j;
+Drzewo::Drzewo(int a, string j){
+    wiek = a;
+    imie = j;
 }
-
-void drzewo::przedstawSie(){
-    cout << "Cześć! Jestem " << this->kimJestem << ". Mam " << this->wiek << " lat" << endl;
+Drzewo::Drzewo(){
+    wiek = 0;
+    imie = "no name";
 }

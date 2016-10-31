@@ -1,19 +1,19 @@
 #ifndef DRZEWO_H
 #define DRZEWO_H
-#include <string>
 #include <iostream>
+#include <string>
 
 using namespace std;
 
-class drzewo
+class Drzewo
 {
 protected:
     int wiek;
-    string kimJestem;
+    string imie;
 public:
-    drzewo();
-    drzewo(int a, string j);
+    Drzewo();
+    Drzewo(int a, string j);
     void przedstawSie();
 };
 
-#endif // DRZEWO_H
+#endif DRZEWO_H

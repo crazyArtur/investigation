@@ -7,13 +7,15 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-    drzewo Drzewo;
-    drzewo InneDrzewo(5, "Innym Drzewcem");
+    Drzewo a;
+    Drzewo b(5, "Jerry");
 
-    Drzewo.przedstawSie();
-    InneDrzewo.przedstawSie();
 
-    jakieś zmiany
+    a.przedstawSie();
+    b.przedstawSie();
+
+   // Drzewo.przedstawSie();
+   // InneDrzewo.przedstawSie();
 
     return 0;
 }
