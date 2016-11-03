@@ -1,5 +1,5 @@
 #include <iostream>
-#include <string>
+#include <QString>
 #include "drzewo.h"
 
 using namespace std;
@@ -13,6 +13,9 @@ int main(int argc, char *argv[])
 
     a.przedstawSie();
     b.przedstawSie();
+
+    QString str = "śłóęąć";
+    cout << str << endl;
 
    // Drzewo.przedstawSie();
    // InneDrzewo.przedstawSie();

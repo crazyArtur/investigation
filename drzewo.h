@@ -16,4 +16,4 @@ public:
     void przedstawSie();
 };
 
-#endif DRZEWO_H
+#endif // DRZEWO_H
