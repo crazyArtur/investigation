@@ -5,15 +5,8 @@
 
 using namespace std;
 
-class Drzewo
-{
-protected:
-    int wiek;
-    string imie;
-public:
-    Drzewo();
-    Drzewo(int a, string j);
-    void przedstawSie();
-};
+const int kkk = 3;
+int dodawanie(int &z, int &zz);
+
 
 #endif // DRZEWO_H
