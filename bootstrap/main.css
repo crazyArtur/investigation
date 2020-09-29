@@ -61,3 +61,16 @@ body {
     font-size: 1.3rem;
     line-height: 1.5;
 }
+
+.description button {
+    border: 1px solid yellow;
+    background: yellow;
+    border-radius: 0;
+    color: #000;
+}
+
+.description button:hover {
+    border: 1px solid green;
+    background: green;
+    color: #fff;
+}
