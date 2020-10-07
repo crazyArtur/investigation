@@ -21,7 +21,20 @@ body {
 
 /*============= NAVIGATION =============*/
 
-
+.navbar-brand img {
+  height: 3rem;
+}
+.navbar {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: .1rem;
+}
+.nav-item {
+  padding: .5rem;
+}
+.nav-link {
+  color: #5b5555!important;
+}
 
 /*============= CAROUSEL =============*/
 
