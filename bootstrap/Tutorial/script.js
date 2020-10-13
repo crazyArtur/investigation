@@ -7,10 +7,10 @@ const errorElement = document.getElementById('error')
 const green = '#4caf50';
 const red = '#f44336';
 
+name.onblur = validateName;
 function validateName() {
-    // check if empty
     if (checkIfEmpty(name)) return;
-    // check if only letters
+    if (!checkIfOnlyLetters(name)) return;
 }
 
 function checkIfEmpty(field) {
@@ -28,4 +28,26 @@ function checkIfEmpty(field) {
 function isEmpty(value) {
     if (value === '') return true;
     return false;
+}
+
+function setInvalid(field, message) {
+    field.className = 'form-control is-invalid';
+    field.nextElementSibling.innerHTML = message;
+    field.nextElementSibling.style.color = red;
+}
+
+function setValid(field, message) {
+    field.className = 'valid';
+    field.nextElementSibling.innerHTML = '';
+    // field.nextElementSibling.style.color = green;
+}
+
+function checkIfOnlyLetters(field) {
+    if (/^[a-zA-Z ]+$/.test(field.value)) {
+        setValid(field);
+        return true;
+    } else {
+        setInvalid(field, `${field.name} must contain only letters`);
+        return false;
+    }
 }
