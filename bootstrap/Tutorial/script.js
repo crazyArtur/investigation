@@ -10,8 +10,17 @@ const errorElement = document.getElementById('error');
 const green = '#4caf50';
 const red = '#f44336';
 
+// Handle form
+form.addEventListener('submit', function (e) {
+    e.preventDefaut();
+    if (validateName() && validateEmail() && validateNumber()) {
+
+    }
+})
+
 name.onblur = validateName;
 email.onblur = validateEmail;
+phone.onblur = validatePhone;
 number.onblur = validateNumber;
 
 // Validators
@@ -22,12 +31,18 @@ function validateName() {
 
 function validateEmail() {
     if (checkIfEmpty(email)) return;
-    if (!containsCharacters(email)) return;
+    if (!isEmailValid(email)) return;
+}
+
+function validatePhone() {
+    if (checkIfEmpty(phone)) return;
+    if (!isPhoneValid(phone)) return;
 }
 
 function validateNumber() {
     if (checkIfEmpty(number)) return;
     if (!meetLength(number, 4, 6)) return;
+    if (!checkIfOnlyNumbers(number)) return;
 }
 
 // Utility 
@@ -70,6 +85,16 @@ function checkIfOnlyLetters(field) {
     }
 }
 
+function checkIfOnlyNumbers(field) {
+    if (/^[0-9]+$/.test(field.value)) {
+        setValid(field);
+        return true;
+    } else {
+        setInvalid(field, `${field.name} must contain only numbers`);
+        return false;
+    }
+}
+
 function meetLength(field, minLength, maxLenght) {
     if (field.value.length >= minLength && field.value.length < maxLenght) {
         setValid(field);
@@ -83,8 +108,13 @@ function meetLength(field, minLength, maxLenght) {
     }
 }
 
-function containsCharacters(field) {
+function isEmailValid(field) {
     let regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    return matchWithRegEx(regEx, field, 'Must be a valid email address');
+}
+
+function isPhoneValid(field) {
+    let regEx = /(\+)?[0-9]{2,3}[ ]?[0-9]{3}[ ]?[0-9]{3}[ ]?[0-9]{3}/
     return matchWithRegEx(regEx, field, 'Must be a valid email address');
 }
 
