@@ -78,24 +78,28 @@
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" name="Name" id="name" placeholder="Name">
-                <!-- onfocusout="validateName()"> -->
                 <div class="invalid-feedback"></div>
             </div>
             <div class="form-group">
                 <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                <input type="email" name="Email" class="form-control" id="email" placeholder="name@example.com">
+                <div class="invalid-feedback"></div>
             </div>
             <div class="form-group">
                 <label for="phoneInput">Phone</label>
                 <input type="tel" class="form-control" id="phoneInput" placeholder="Phone">
+                <div class="invalid-feedback"></div>
             </div>
             <div class="form-group">
-                <label for="formGroupNumber">Number</label>
-                <input type="tel" class="form-control" id="formGroupNumber" pattern="[0-9]{4,6}" placeholder="Number">
+                <label for="number">Number</label>
+                <input type="tel" name="Number" class="form-control" id="number" pattern="[0-9]{4,6}"
+                    placeholder="Number">
+                <div class="invalid-feedback"></div>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlFile1">Example file input</label>
                 <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                <div class="invalid-feedback"></div>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
