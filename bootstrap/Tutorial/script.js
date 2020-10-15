@@ -2,7 +2,7 @@ const name = document.getElementById('name');
 const email = document.getElementById('email');
 const phone = document.getElementById('phone');
 const number = document.getElementById('number');
-const fileInput = document.getElementById('file');
+const fileInput = document.getElementById('exampleFile');
 const form = document.getElementById('form');
 const errorElement = document.getElementById('error');
 
@@ -22,10 +22,10 @@ name.onblur = validateName;
 email.onblur = validateEmail;
 phone.onblur = validatePhone;
 number.onblur = validateNumber;
-fileInput.onclick = function () {
-    console.log('FIRST');
-    this.value = null;
-};
+// fileInput.onclick = function () {
+//     console.log('FIRST');
+//     this.value = null;
+// };
 fileInput.onchange = validateImage;
 
 // Validators
@@ -53,12 +53,12 @@ function validateNumber() {
 
 function validateImage() {
     console.log("IMAGE");
-    var filePath = fileInput.value();
+    var filePath = fileInput.value;
     let allowedExt = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
 
 
     if (!allowedExt.exec(filePath)) {
-        setInvalid(fileInput, `Wrong file`);
+        setInvalid('', `Wrong file`);
         fileInput.value = '';
         return false;
     } else {
