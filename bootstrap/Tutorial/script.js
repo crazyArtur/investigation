@@ -57,10 +57,11 @@ function validateImage() {
     let allowedExt = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
 
     if (!allowedExt.exec(filePath)) {
-        setInvalid('', `Wrong file`);
+        // setInvalid(fileInput, `Wrong file`);
         fileInput.value = '';
         return false;
     } else {
+        // IMAGE PREVIEW
         if (fileInput.files && fileInput.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
@@ -70,7 +71,7 @@ function validateImage() {
         }
     }
 
-    var fileSize = fileInput.size;
+    var fileSize = fileInput.files[0].size;
     console.log(fileSize);
     // if (fileSize > 100)
 }
