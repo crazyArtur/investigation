@@ -56,7 +56,6 @@ function validateImage() {
     var filePath = fileInput.value;
     let allowedExt = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
 
-
     if (!allowedExt.exec(filePath)) {
         setInvalid('', `Wrong file`);
         fileInput.value = '';
@@ -70,6 +69,10 @@ function validateImage() {
             reader.readAsDataURL(fileInput.files[0]);
         }
     }
+
+    var fileSize = fileInput.size;
+    console.log(fileSize);
+    // if (fileSize > 100)
 }
 
 // Utility 
