@@ -10,6 +10,8 @@ const errorElement = document.getElementById('error');
 const green = '#4caf50';
 const red = '#f44336';
 
+const MiB = 10485760;
+
 // Handle form
 form.addEventListener('submit', function (e) {
     e.preventDefaut();
@@ -73,7 +75,11 @@ function validateImage() {
 
     var fileSize = fileInput.files[0].size;
     console.log(fileSize);
-    // if (fileSize > 100)
+    if (fileSize > MiB) {
+        fileInput.value = '';
+        console.log("File too large");
+        return false;
+    }
 }
 
 // Utility 
