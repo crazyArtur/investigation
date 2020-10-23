@@ -44,6 +44,7 @@ function validateEmail() {
 
 function validatePhone() {
     if (checkIfEmpty(phone)) return;
+    // todo: check if not more than 11 digits
     if (!isPhoneValid(phone)) return;
 }
 
@@ -163,7 +164,7 @@ function isEmailValid(field) {
 
 function isPhoneValid(field) {
     let regEx = /(\+)?[0-9]{2,3}[ ]?[0-9]{3}[ ]?[0-9]{3}[ ]?[0-9]{3}/
-    return matchWithRegEx(regEx, field, 'Must be a valid email address');
+    return matchWithRegEx(regEx, field, 'Must be a valid phone number');
 }
 
 function matchWithRegEx(regEx, field, message) {
