@@ -70,7 +70,15 @@ function validateImage() {
                 var img = new Image;
                 img.onload = function () {
                     document.getElementById('imagePreview').innerHTML = '<img src="' + e.target.result + '" id="imagePreviewIMG"/>';
+                    console.log("The width of the image is " + img.width + "px.");
+                    console.log("The height of the image is " + img.height + "px.");
+                    if (img.width > 1000 || img.height > 1000) {
+                        fileInput.value = '';
+                        console.log("Wrong dimensions");
+                        return false;
+                    }
                 };
+                img.src = reader.result;
             };
             reader.readAsDataURL(fileInput.files[0]);
         }
