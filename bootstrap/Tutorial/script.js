@@ -176,3 +176,13 @@ function matchWithRegEx(regEx, field, message) {
         return false;
     }
 }
+
+// AJAX
+
+// $.ajax('demo.html', {
+//     success: function(result) {
+//         $('#testdiv').html(result);
+//     }
+// });
+
+// source: https://www.keycdn.com/support/ajax-programming
