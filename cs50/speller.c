@@ -81,8 +81,7 @@ int main(int argc, char *argv[])
             if (index > LENGTH)
             {
                 // Consume remainder of alphabetical string
-                while ((c = fgetc(file)) != EOF && isalpha(c))
-                    ;
+                while ((c = fgetc(file)) != EOF && isalpha(c));
 
                 // Prepare for new word
                 index = 0;
