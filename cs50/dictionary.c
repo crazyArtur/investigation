@@ -7,7 +7,7 @@
 // Represents a node in a hash table
 typedef struct node
 {
-    bool isCorrect;
+    // bool isCorrect;
     char word[LENGTH + 1];
     struct node *next;
 } node;
@@ -15,9 +15,12 @@ typedef struct node
 // Number of buckets in hash table
 const unsigned int N = 26;
 
+// ASCII
+int ascii = 97;
+
 // Hash table
-node table[N];
-node *top;
+node *table[N];
+// node *top;
 
 // Returns true if word is in dictionary else false
 bool check(const char *word)
@@ -40,10 +43,18 @@ bool load(const char *dictionary)
     {
         if (i == 0 || dictionary[i-1] == 10)
         {
-            top =     dictionary[i]
+            table[dictionary[i] - ascii] = malloc(sizeof(node));
         }
-
     }
+
+    // for(int i = 0, length = strlen(dictionary) ; i < length; i++)
+    // {
+    //     if (i == 0 || dictionary[i-1] == 10)
+    //     {
+    //         top =     dictionary[i]
+    //     }
+
+    // }
 
     return false;
 }
