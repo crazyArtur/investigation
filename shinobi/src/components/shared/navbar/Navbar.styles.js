@@ -17,5 +17,5 @@ export const NavbarContent = styled.nav`
 export const TabsContainer = styled.div`
   display: flex;
   justify-content: flex-start;
-  gap: 2rem;
+  gap: 3rem;
 `;

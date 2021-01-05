@@ -2,6 +2,7 @@ import styled from 'styled-components/macro';
 
 export const ButtonStyled = styled.button`
   height: 40px;
+  font-size: 10px;
   display: inline-block;
 
   border: none;

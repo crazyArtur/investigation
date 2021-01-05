@@ -10,7 +10,7 @@ export const GlobalStyles = styled.div`
   height: 100%;
   width: 100%;
   font-family: "Roboto", sans-serif;
-  font-size: "16px";
+  font-size: 16px;
 `;
 
 export const ContentContainer = styled.div`

@@ -46,8 +46,10 @@ export const Input = styled.input`
 
 export const Label = styled.label`
     position: absolute;
-    transform: translateY(-60px);
+    transform: translateY(-50px);
     pointer-events: none;
+    color: #adadad;
+    font-size: 10px;
     span {
       color: red;
     }

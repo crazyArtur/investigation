@@ -1,10 +1,8 @@
 import styled from "styled-components/macro";
 
 export const CardContainer = styled.div`
-  min-width: 450px;
-  max-width: 900px;
+  min-width: 400px;
   min-height: 300px;
-  padding: 2rem;
   display: flex;
   flex-direction: column;
   z-index: 3;
