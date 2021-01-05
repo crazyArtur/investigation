@@ -20,5 +20,6 @@ export const ButtonStyled = styled.button`
   cursor: pointer;
   display: flex;
   align-items: center;
+  padding: 0;
 
 `;

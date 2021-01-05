@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { TabsContainer, NavbarContainer, NavbarContent } from "./Navbar.styles";
 import logo from "./logo.jpg";
 import Button from "../button/Button";
 
-const Navbar = ({ children, ...otherProps }) => (
+const Navbar = ({ children, ...otherProps }) => {
+
+//  const { selectedPage, setPage } = useState("/");
+
+//  const handleClick = page = e => {
+//    setPage(page);
+//  }
+  return(
   <NavbarContainer {...otherProps}>
     <NavbarContent>
     <TabsContainer />
@@ -18,5 +25,6 @@ const Navbar = ({ children, ...otherProps }) => (
     </NavbarContent>
   </NavbarContainer>
 );
+};
 
 export default Navbar;

@@ -31,8 +31,24 @@ export const Input = styled.input`
    box-sizing: border-box;
    min-width: 250px;
    width: 100%;
+   padding: 0;
+   /* &:not(:valid)+label {
+     display: inline;
+   } */
+   &:valid+label {
+     display: none;
+   }
 
    ::placeholder {
       color: #adadad;
  }
+`;
+
+export const Label = styled.label`
+    position: absolute;
+    transform: translateY(-60px);
+    pointer-events: none;
+    span {
+      color: red;
+    }
 `;

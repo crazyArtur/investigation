@@ -16,4 +16,5 @@ export const GlobalStyles = styled.div`
 export const ContentContainer = styled.div`
   background-color: #f8f8f8;
   min-height: 70.5vh;
+  overflow: auto;
 `;
