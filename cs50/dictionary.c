@@ -39,13 +39,24 @@ unsigned int hash(const char *word)
 // Loads dictionary into memory, returning true if successful else false
 bool load(const char *dictionary)
 {
-    for(int i = 0, length = strlen(dictionary) ; i < length; i++)
+    FILE *file = fopen(dictionary, "r");
+    if (file == NULL)
     {
-        if (i == 0 || dictionary[i-1] == 10)
-        {
-            table[dictionary[i] - ascii] = malloc(sizeof(node));
-        }
+        printf("Could not open %s.\n", dictionary);
+        unload();
+        return 1;
     }
+
+
+
+
+    // for(int i = 0, length = strlen(dictionary) ; i < length; i++)
+    // {
+    //     if (i == 0 || dictionary[i-1] == 10)
+    //     {
+    //         table[dictionary[i] - ascii] = malloc(sizeof(node));
+    //     }
+    // }
 
     // for(int i = 0, length = strlen(dictionary) ; i < length; i++)
     // {

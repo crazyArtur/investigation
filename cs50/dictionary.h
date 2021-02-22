@@ -5,6 +5,11 @@
 
 #include <stdbool.h>
 
+#include <ctype.h>
+#include <stdio.h>
+#include <sys/resource.h>
+#include <sys/time.h>
+
 // Maximum length for a word
 // (e.g., pneumonoultramicroscopicsilicovolcanoconiosis)
 #define LENGTH 45
