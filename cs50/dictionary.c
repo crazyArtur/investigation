@@ -47,6 +47,20 @@ bool load(const char *dictionary)
         return 1;
     }
 
+    int index = 0;
+    char newWord[LENGTH + 1];
+
+    for (int c = fgetc(file); c != EOF; c = fgetc(file))
+    {
+        if(c != '\n')
+        {
+            newWord[index] = c;
+            index++;
+        }
+        else
+        {
+            newWord[index] = '\0'
+        }
 
 
 
