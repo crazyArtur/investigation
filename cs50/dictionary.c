@@ -91,12 +91,7 @@ bool load(const char *dictionary)
 // Returns number of words in dictionary if loaded else 0 if not yet loaded
 unsigned int size(void)
 {
-    // TESTING
-    unsigned int i = word_count * sizeof(node);
-    printf("Size of node is %zu\n", sizeof(node));
-    printf("Number of words is %i\n", word_count);
-    printf("Size is %i\n", i);
-    return i;
+    return word_count * sizeof(node);
 }
 
 // Unloads dictionary from memory, returning true if successful else false
