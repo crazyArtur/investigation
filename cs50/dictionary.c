@@ -19,7 +19,7 @@ const unsigned int N = 26;
 int ascii = 97;
 
 // Hash table
-node *table[N];
+node *table[N] = {NULL};
 // node *top;
 
 // Returns true if word is in dictionary else false
@@ -59,27 +59,26 @@ bool load(const char *dictionary)
         }
         else
         {
-            newWord[index] = '\0'
+            newWord[index] = '\0';
+
+            int bucket = hash(newWord);
+            if(table[bucket] == NULL)
+            {
+                table[bucket] = (node*) malloc(sizeof(node));
+                memcpy(table[bucket] -> word, newWord, strlen(newWord)+1);
+                table[bucket] -> next = NULL;
+            }
+            else
+            {
+                node* tmp = (node*) malloc(sizeof(node));
+                memcpy(tmp -> word, newWord, strlen(newWord)+1);
+                tmp -> next = table[bucket];
+                table[bucket] = tmp;
+            }
+
+            index = 0;
         }
-
-
-
-    // for(int i = 0, length = strlen(dictionary) ; i < length; i++)
-    // {
-    //     if (i == 0 || dictionary[i-1] == 10)
-    //     {
-    //         table[dictionary[i] - ascii] = malloc(sizeof(node));
-    //     }
-    // }
-
-    // for(int i = 0, length = strlen(dictionary) ; i < length; i++)
-    // {
-    //     if (i == 0 || dictionary[i-1] == 10)
-    //     {
-    //         top =     dictionary[i]
-    //     }
-
-    // }
+    }
 
     return false;
 }
