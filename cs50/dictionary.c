@@ -20,6 +20,9 @@ const unsigned int N = 26;
 // ASCII
 int ascii = 97;
 
+// dictionary word count
+unsigned int word_count = 0;
+
 // Hash table
 node *table[N] = {NULL};
 // node *top;
@@ -34,7 +37,7 @@ bool check(const char *word)
 // Hashes word to a number
 unsigned int hash(const char *word)
 {
-    return word[0] - 97;
+    return word[0] - ascii;
 }
 
 // Loads dictionary into memory, returning true if successful else false
@@ -49,34 +52,35 @@ bool load(const char *dictionary)
     }
 
     int index = 0;
-    char newWord[LENGTH + 1];
+    char new_word[LENGTH + 1];
 
     for (int c = fgetc(file); c != EOF; c = fgetc(file))
     {
         if(c != '\n')
         {
-            newWord[index] = c;
+            new_word[index] = c;
             index++;
         }
         else
         {
-            newWord[index] = '\0';
+            new_word[index] = '\0';
 
-            int bucket = hash(newWord);
+            int bucket = hash(new_word);
             if(table[bucket] == NULL)
             {
                 table[bucket] = (node*) malloc(sizeof(node));
-                memcpy(table[bucket] -> word, newWord, strlen(newWord)+1);
+                memcpy(table[bucket] -> word, new_word, strlen(new_word)+1);
                 table[bucket] -> next = NULL;
             }
             else
             {
                 node* tmp = (node*) malloc(sizeof(node));
-                memcpy(tmp -> word, newWord, strlen(newWord)+1);
+                memcpy(tmp -> word, new_word, strlen(new_word)+1);
                 tmp -> next = table[bucket];
                 table[bucket] = tmp;
             }
 
+            word_count++;
             index = 0;
         }
     }
@@ -87,8 +91,12 @@ bool load(const char *dictionary)
 // Returns number of words in dictionary if loaded else 0 if not yet loaded
 unsigned int size(void)
 {
-    // TODO
-    return 0;
+    // TESTING
+    unsigned int i = word_count * sizeof(node);
+    printf("Size of node is %zu\n", sizeof(node));
+    printf("Number of words is %i\n", word_count);
+    printf("Size is %i\n", i);
+    return i;
 }
 
 // Unloads dictionary from memory, returning true if successful else false
