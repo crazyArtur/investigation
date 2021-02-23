@@ -1,6 +1,8 @@
 // Implements a dictionary's functionality
 
 #include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include "dictionary.h"
 
@@ -43,7 +45,7 @@ bool load(const char *dictionary)
     {
         printf("Could not open %s.\n", dictionary);
         unload();
-        return 1;
+        return false;
     }
 
     int index = 0;
@@ -79,7 +81,7 @@ bool load(const char *dictionary)
         }
     }
 
-    return false;
+    return true;
 }
 
 // Returns number of words in dictionary if loaded else 0 if not yet loaded
