@@ -18,7 +18,7 @@ typedef struct node
 const unsigned int N = 26;
 
 // ASCII
-int ascii = 97;
+const int ascii = 97;
 
 // dictionary word count
 unsigned int word_count = 0;
@@ -42,12 +42,24 @@ bool check_proper(node* ptr, char *word_lower)
     return check_proper(ptr->next, word_lower);
 }
 
+void unload_proper(node* ptr)
+{
+    if(ptr == NULL)
+    {
+        return;
+    }
+
+    unload_proper(ptr->next);
+    free(ptr);
+    return;
+}
+
 // Returns true if word is in dictionary else false
 bool check(const char *word)
 {
     char word_lower[LENGTH + 1];
     memcpy(word_lower, word, strlen(word)+1);
-    
+
     for(int i = 0; word_lower[i]; i++)
     {
       word_lower[i] = tolower(word_lower[i]);
@@ -107,6 +119,8 @@ bool load(const char *dictionary)
         }
     }
 
+    fclose(file);
+
     return true;
 }
 
@@ -120,6 +134,9 @@ unsigned int size(void)
 // Unloads dictionary from memory, returning true if successful else false
 bool unload(void)
 {
-    // TODO
-    return false;
+    for(int i = 0; i < N; i++)
+    {
+        unload_proper(table[i]);
+    }
+    return true;
 }
