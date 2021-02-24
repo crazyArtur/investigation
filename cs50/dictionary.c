@@ -29,7 +29,7 @@ node *table[N] = {NULL};
 
 bool check_proper(node* ptr, char *word_lower)
 {
-    if(ptr == NULL])
+    if(ptr == NULL)
     {
         return false;
     }
@@ -46,11 +46,11 @@ bool check_proper(node* ptr, char *word_lower)
 bool check(const char *word)
 {
     char word_lower[LENGTH + 1];
-    memccpy(word_lower, word, strlen(word)+1);
+    memcpy(word_lower, word, strlen(word)+1);
 
     for(int i = 0; word_lower[i]; i++)
     {
-      word_lower[i] = tolower(str[i]);
+      word_lower[i] = tolower(word_lower[i]);
     }
 
     return check_proper(table[hash(word)], word_lower);
