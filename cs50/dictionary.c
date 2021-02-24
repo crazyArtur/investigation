@@ -27,11 +27,33 @@ unsigned int word_count = 0;
 node *table[N] = {NULL};
 // node *top;
 
+bool check_proper(node* ptr, char *word_lower)
+{
+    if(ptr == NULL])
+    {
+        return false;
+    }
+
+    if(strcmp(word_lower, ptr->word) == 0)
+    {
+        return true;
+    }
+
+    return check_proper(ptr->next, word_lower);
+}
+
 // Returns true if word is in dictionary else false
 bool check(const char *word)
 {
-    // TODO
-    return false;
+    char word_lower[LENGTH + 1];
+    memccpy(word_lower, word, strlen(word)+1);
+
+    for(int i = 0; word_lower[i]; i++)
+    {
+      word_lower[i] = tolower(str[i]);
+    }
+
+    return check_proper(table[hash(word)], word_lower);
 }
 
 // Hashes word to a number
