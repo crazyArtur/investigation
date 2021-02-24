@@ -47,13 +47,13 @@ bool check(const char *word)
 {
     char word_lower[LENGTH + 1];
     memcpy(word_lower, word, strlen(word)+1);
-
+    
     for(int i = 0; word_lower[i]; i++)
     {
       word_lower[i] = tolower(word_lower[i]);
     }
 
-    return check_proper(table[hash(word)], word_lower);
+    return check_proper(table[hash(word_lower)], word_lower);
 }
 
 // Hashes word to a number
