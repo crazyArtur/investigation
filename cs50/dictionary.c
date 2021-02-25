@@ -6,26 +6,22 @@
 
 #include "dictionary.h"
 
-// Represents a node in a hash table
-typedef struct node
-{
-    // bool isCorrect;
-    char word[LENGTH + 1];
-    struct node *next;
-} node;
-
 // Number of buckets in hash table
 const unsigned int N = 26;
 
-// ASCII
-const int ascii = 97;
+// Represents a node in a hash table
+typedef struct node
+{
+    char word[LENGTH + 1];
+    struct node *table[N];
+} node;
+
 
 // dictionary word count
 unsigned int word_count = 0;
 
 // Hash table
 node *table[N] = {NULL};
-// node *top;
 
 bool check_proper(node* ptr, char *word_lower)
 {
@@ -71,7 +67,7 @@ bool check(const char *word)
 // Hashes word to a number
 unsigned int hash(const char *word)
 {
-    return word[0] - ascii;
+    return word[0] - 'a';
 }
 
 // Loads dictionary into memory, returning true if successful else false
@@ -103,7 +99,6 @@ bool load(const char *dictionary)
             if(table[bucket] == NULL)
             {
                 table[bucket] = (node*) malloc(sizeof(node));
-                memcpy(table[bucket] -> word, new_word, strlen(new_word)+1);
                 table[bucket] -> next = NULL;
             }
             else
