@@ -107,15 +107,14 @@ bool load(const char *dictionary)
                 {
                     ptr = (node*) malloc(sizeof(node));
                 }
-                if(new_word[index] == '\0')
+                if(new_word[++index] == '\0')
                 {
                     ptr->word = true;
                     finished = true;
                 }
                 else
                 {
-                    index++;
-                    ptr = ptr->tablee[hash(new_word[index]);]
+                    ptr = ptr->tablee[hash(&new_word[index])];
                 }
 
             } while (!finished);
