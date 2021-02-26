@@ -12,10 +12,9 @@ const unsigned int N = 26;
 // Represents a node in a hash table
 typedef struct node
 {
-    char word[LENGTH + 1];
-    struct node *table[N];
+    bool word;
+    struct node *tablee[N];
 } node;
-
 
 // dictionary word count
 unsigned int word_count = 0;
@@ -23,45 +22,46 @@ unsigned int word_count = 0;
 // Hash table
 node *table[N] = {NULL};
 
-bool check_proper(node* ptr, char *word_lower)
-{
-    if(ptr == NULL)
-    {
-        return false;
-    }
+// bool check_proper(node* ptr, char *word_lower)
+// {
+//     if(ptr == NULL)
+//     {
+//         return false;
+//     }
 
-    if(strcmp(word_lower, ptr->word) == 0)
-    {
-        return true;
-    }
+//     if(strcmp(word_lower, ptr->word) == 0)
+//     {
+//         return true;
+//     }
 
-    return check_proper(ptr->next, word_lower);
-}
+//     return check_proper(ptr->next, word_lower);
+// }
 
-void unload_proper(node* ptr)
-{
-    if(ptr == NULL)
-    {
-        return;
-    }
+// void unload_proper(node* ptr)
+// {
+//     if(ptr == NULL)
+//     {
+//         return;
+//     }
 
-    unload_proper(ptr->next);
-    free(ptr);
-    return;
-}
+//     unload_proper(ptr->next);
+//     free(ptr);
+//     return;
+// }
 
 // Returns true if word is in dictionary else false
 bool check(const char *word)
 {
-    char word_lower[LENGTH + 1];
-    memcpy(word_lower, word, strlen(word)+1);
+    // char word_lower[LENGTH + 1];
+    // memcpy(word_lower, word, strlen(word)+1);
 
-    for(int i = 0; word_lower[i]; i++)
-    {
-      word_lower[i] = tolower(word_lower[i]);
-    }
+    // for(int i = 0; word_lower[i]; i++)
+    // {
+    //   word_lower[i] = tolower(word_lower[i]);
+    // }
 
-    return check_proper(table[hash(word_lower)], word_lower);
+    return false;
+    // check_proper(table[hash(word_lower)], word_lower);
 }
 
 // Hashes word to a number
@@ -84,6 +84,7 @@ bool load(const char *dictionary)
     int index = 0;
     char new_word[LENGTH + 1];
 
+
     for (int c = fgetc(file); c != EOF; c = fgetc(file))
     {
         if(c != '\n')
@@ -94,25 +95,36 @@ bool load(const char *dictionary)
         else
         {
             new_word[index] = '\0';
-
-            int bucket = hash(new_word);
-            if(table[bucket] == NULL)
-            {
-                table[bucket] = (node*) malloc(sizeof(node));
-                table[bucket] -> next = NULL;
-            }
-            else
-            {
-                node* tmp = (node*) malloc(sizeof(node));
-                memcpy(tmp -> word, new_word, strlen(new_word)+1);
-                tmp -> next = table[bucket];
-                table[bucket] = tmp;
-            }
-
+            index = 0;
             word_count++;
+            bool finished = false;
+
+            node* ptr = table[hash(new_word)];
+
+            do
+            {
+                if(ptr == NULL)
+                {
+                    ptr = (node*) malloc(sizeof(node));
+                }
+                if(new_word[index] == '\0')
+                {
+                    ptr->word = true;
+                    finished = true;
+                }
+                else
+                {
+                    index++;
+                    ptr = ptr->tablee[hash(new_word[index]);]
+                }
+
+            } while (!finished);
+
             index = 0;
         }
     }
+
+    printf("Word count = %i\n", word_count); // TESTING
 
     fclose(file);
 
@@ -129,9 +141,9 @@ unsigned int size(void)
 // Unloads dictionary from memory, returning true if successful else false
 bool unload(void)
 {
-    for(int i = 0; i < N; i++)
-    {
-        unload_proper(table[i]);
-    }
-    return true;
+    // for(int i = 0; i < N; i++)
+    // {
+    //     unload_proper(table[i]);
+    // }
+    return false; //true;
 }
