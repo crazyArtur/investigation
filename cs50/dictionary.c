@@ -22,21 +22,6 @@ unsigned int word_count = 0;
 // Hash table
 node *table[N] = {NULL};
 
-// bool check_proper(node* ptr, char *word_lower)
-// {
-//     if(ptr == NULL)
-//     {
-//         return false;
-//     }
-
-//     if(strcmp(word_lower, ptr->word) == 0)
-//     {
-//         return true;
-//     }
-
-//     return check_proper(ptr->next, word_lower);
-// }
-
 // void unload_proper(node* ptr)
 // {
 //     if(ptr == NULL)
@@ -52,16 +37,44 @@ node *table[N] = {NULL};
 // Returns true if word is in dictionary else false
 bool check(const char *word)
 {
-    // char word_lower[LENGTH + 1];
-    // memcpy(word_lower, word, strlen(word)+1);
+    bool result = false;
+    char word_lower[LENGTH + 1];
+    memcpy(word_lower, word, strlen(word)+1);
 
-    // for(int i = 0; word_lower[i]; i++)
-    // {
-    //   word_lower[i] = tolower(word_lower[i]);
-    // }
+    for(int i = 0; word_lower[i]; i++)
+    {
+      word_lower[i] = tolower(word_lower[i]);
+    }
 
-    return false;
-    // check_proper(table[hash(word_lower)], word_lower);
+    node* ptr = table[hash(word_lower)];
+
+    for(int i = 0; i < strlen(word_lower); i++)
+    {
+        if(ptr == NULL)
+        {
+            result = false;
+            break;
+        }
+
+        if(word_lower[i+1] == '\0')
+        {
+            if(ptr->word == false)
+            {
+                result = false;
+                break;
+            }
+            else
+            {
+                result = true;
+                break;
+            }
+        }
+        else
+        {
+            ptr = ptr->tablee[hash(&word_lower[i+1])];
+        }
+    }
+    return result;
 }
 
 // Hashes word to a number
@@ -98,23 +111,34 @@ bool load(const char *dictionary)
             index = 0;
             word_count++;
             bool finished = false;
+            unsigned int hashed = hash(new_word);
 
-            node* ptr = table[hash(new_word)];
+            if(table[hashed] == NULL)
+            {
+                table[hashed] = (node*) malloc(sizeof(node));
+            }
+
+            node* ptr0 = table[hashed];
+            node* ptr1 = table[hashed];
 
             do
             {
-                if(ptr == NULL)
+                if(ptr1 == NULL)
                 {
-                    ptr = (node*) malloc(sizeof(node));
+                    // printf("PTR WAS NULL\n"); // TESTING
+                    ptr1 = (node*) malloc(sizeof(node));
+                    ptr0->tablee[hash(&new_word[index])] = ptr1;
                 }
+                ptr0 = ptr1;
+
                 if(new_word[++index] == '\0')
                 {
-                    ptr->word = true;
+                    ptr1->word = true;
                     finished = true;
                 }
                 else
                 {
-                    ptr = ptr->tablee[hash(&new_word[index])];
+                    ptr1 = ptr1->tablee[hash(&new_word[index])];
                 }
 
             } while (!finished);
@@ -122,8 +146,6 @@ bool load(const char *dictionary)
             index = 0;
         }
     }
-
-    printf("Word count = %i\n", word_count); // TESTING
 
     fclose(file);
 
@@ -139,9 +161,15 @@ unsigned int size(void)
 // Unloads dictionary from memory, returning true if successful else false
 bool unload(void)
 {
-    // for(int i = 0; i < N; i++)
-    // {
-    //     unload_proper(table[i]);
-    // }
+    for( int i = 0; i < N; i++)
+    {
+        if(table[i] == NULL)
+        {
+            continue;
+        }
+
+
+    }
+
     return false; //true;
 }
