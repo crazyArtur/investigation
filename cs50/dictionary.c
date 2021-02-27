@@ -13,7 +13,7 @@ const unsigned int N = 26;
 typedef struct node
 {
     bool word;
-    struct node *tablee[N];
+    struct node *tablee[N+1];
 } node;
 
 // dictionary word count
@@ -29,11 +29,12 @@ void unload_proper(node* ptr)
         return;
     }
 
-    for(int i = 0; i < N; i++)
+    for(int i = 0; i <= N; i++)
     {
         unload_proper(ptr->tablee[i]);
     }
     free(ptr);
+    ptr = NULL;
 
     return;
 }
@@ -78,13 +79,23 @@ bool check(const char *word)
             ptr = ptr->tablee[hash(&word_lower[i+1])];
         }
     }
+
+    ptr = NULL;
+
     return result;
 }
 
 // Hashes word to a number
 unsigned int hash(const char *word)
 {
-    return word[0] - 'a';
+    int hashed = word[0] - 'a';
+
+    if(hashed < 0)
+    {
+        hashed = 26;
+    }
+
+    return hashed;
 }
 
 // Loads dictionary into memory, returning true if successful else false
@@ -100,7 +111,6 @@ bool load(const char *dictionary)
 
     int index = 0;
     char new_word[LENGTH + 1];
-
 
     for (int c = fgetc(file); c != EOF; c = fgetc(file))
     {
@@ -120,32 +130,42 @@ bool load(const char *dictionary)
             if(table[hashed] == NULL)
             {
                 table[hashed] = (node*) malloc(sizeof(node));
+                for(int i = 0; i < N+1; i++)
+                {
+                    table[hashed]->tablee[i] = NULL;
+                }
             }
 
-            node* ptr0 = table[hashed];
-            node* ptr1 = table[hashed];
+            node* ptr = table[hashed];
 
             do
             {
-                if(ptr1 == NULL)
+                if(ptr == NULL)
                 {
-                    // printf("PTR WAS NULL\n"); // TESTING
-                    ptr1 = (node*) malloc(sizeof(node));
-                    ptr0->tablee[hash(&new_word[index])] = ptr1;
+                    printf("PTR WAS NULL\n"); // TESTING
                 }
-                ptr0 = ptr1;
 
                 if(new_word[++index] == '\0')
                 {
-                    ptr1->word = true;
+                    ptr->word = true;
                     finished = true;
                 }
                 else
                 {
-                    ptr1 = ptr1->tablee[hash(&new_word[index])];
+                    if(ptr->tablee[hash(&new_word[index])] == NULL)
+                    {
+                        ptr->tablee[hash(&new_word[index])] = (node*) malloc(sizeof(node));
+                        for(int i = 0; i < N+1; i++)
+                        {
+                            ptr->tablee[hash(&new_word[index])]->tablee[i] = NULL;
+                        }
+                    }
+                    ptr = ptr->tablee[hash(&new_word[index])];
                 }
 
             } while (!finished);
+
+            ptr = NULL;
 
             index = 0;
         }
