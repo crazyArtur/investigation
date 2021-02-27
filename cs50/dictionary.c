@@ -22,17 +22,21 @@ unsigned int word_count = 0;
 // Hash table
 node *table[N] = {NULL};
 
-// void unload_proper(node* ptr)
-// {
-//     if(ptr == NULL)
-//     {
-//         return;
-//     }
+void unload_proper(node* ptr)
+{
+    if(ptr == NULL)
+    {
+        return;
+    }
 
-//     unload_proper(ptr->next);
-//     free(ptr);
-//     return;
-// }
+    for(int i = 0; i < N; i++)
+    {
+        unload_proper(ptr->tablee[i]);
+    }
+    free(ptr);
+
+    return;
+}
 
 // Returns true if word is in dictionary else false
 bool check(const char *word)
@@ -155,7 +159,7 @@ bool load(const char *dictionary)
 // Returns number of words in dictionary if loaded else 0 if not yet loaded
 unsigned int size(void)
 {
-    return word_count * sizeof(node);
+    return word_count;
 }
 
 // Unloads dictionary from memory, returning true if successful else false
@@ -163,13 +167,8 @@ bool unload(void)
 {
     for( int i = 0; i < N; i++)
     {
-        if(table[i] == NULL)
-        {
-            continue;
-        }
-
-
+        unload_proper(table[i]);
     }
 
-    return false; //true;
+    return true;
 }
