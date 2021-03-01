@@ -90,7 +90,7 @@ unsigned int hash(const char *word)
 {
     int hashed = word[0] - 'a';
 
-    if(hashed < 0)
+    if(word[0] == '\'')
     {
         hashed = 26;
     }
