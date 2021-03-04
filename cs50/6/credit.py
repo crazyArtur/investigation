@@ -13,16 +13,23 @@ while True:
     if(cardNumber == 0):
         break
 
-print(cardDigits)
-
-if(digits != 13 and digits != 15 and digits != 16):
-    print("INVALID")
-
 digitSum = 0
 for i in range(0, digits, 1):
     if(i%2 == 0):
         digitSum += cardDigits[i]
-
     else:
         cardDigits[i] *= 2
         digitSum += cardDigits[i] // 10 + cardDigits[i] % 10
+
+if(digitSum % 10 != 0):
+    print("INVALID")
+
+mastercard = [1,2,3,4,5]
+if((digits == 13 or digits == 16) and cardDigits[digits-1] == 4):
+    print("VISA")
+elif(digits == 15 and cardDigits[digits-1] == 3 and (cardDigits[digits-2] == 4 or cardDigits[digits-2] == 7)):
+    print("AMEX")
+elif(digits == 16 and cardDigits[digits-1] == 5 and (cardDigits[digits-2] in mastercard)):
+    print("MASTERCARD")
+else:
+    print("INVALID")
