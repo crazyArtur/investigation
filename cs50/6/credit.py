@@ -18,11 +18,12 @@ for i in range(0, digits, 1):
     if(i%2 == 0):
         digitSum += cardDigits[i]
     else:
-        cardDigits[i] *= 2
-        digitSum += cardDigits[i] // 10 + cardDigits[i] % 10
+        temp = cardDigits[i] * 2
+        digitSum += temp // 10 + temp % 10
 
 if(digitSum % 10 != 0):
     print("INVALID")
+    quit()
 
 mastercard = [1,2,3,4,5]
 if((digits == 13 or digits == 16) and cardDigits[digits-1] == 4):
