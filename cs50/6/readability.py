@@ -12,19 +12,20 @@ for mark in endOfSentence:
 
 wordCount = text.count(" ")+1
 
-print(sentenceCount)
-print(wordCount)
-
 letterCount = 0
 for char in text:
     if(char.isalpha()):
         letterCount += 1
 
-print(letterCount)
-
 L = letterCount / wordCount *100
 S = sentenceCount / wordCount *100
 
 grade = 0.0588 * L - 0.296 * S - 15.8
+gradeRounded = int(round(grade))
 
-print(int(round(grade)))
+if(gradeRounded < 1):
+    print("Before Grade 1")
+elif(gradeRounded > 16):
+    print("Grade 16+")
+else:
+    print("Grade ", gradeRounded)
