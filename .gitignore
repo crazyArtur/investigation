@@ -48,6 +48,9 @@ Temporary Items
 
 node_modules/
 
+# me
 .eslintcache
 
 .vscode/
+
+./cs50/6/files
