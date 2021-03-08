@@ -7,6 +7,14 @@ if(len(argv) != 3):
 
 with open(argv[1], "r") as file:
     spam = csv.reader(file)
-    for row in spam:
-        print(row)
+    strs = next(spam)
+    strs.pop(0)
 
+print(strs)
+
+print("------------------------")
+
+with open(argv[1]) as file2:
+    reader = csv.DictReader(file2)
+    for row in reader:
+        print(row)
