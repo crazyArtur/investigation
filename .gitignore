@@ -53,4 +53,4 @@ node_modules/
 
 .vscode/
 
-./cs50/6/files
+./cs50/6/files/*
