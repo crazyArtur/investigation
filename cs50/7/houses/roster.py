@@ -7,6 +7,11 @@ if(len(argv) != 2):
 
 db = SQL("sqlite:///students.db")
 
-all = db.execute("SELECT * FROM students WHERE birth > 1980")
+all = db.execute("SELECT first, middle, last, birth FROM students WHERE house = ? ORDER BY last, first", argv[1])
 
-print(all)
+for it in all:
+    if(it["middle"] == None):
+        middle = ""
+    else:
+        middle = it["middle"]
+    print(it["first"], middle, it["last"] + ", born ", it["birth"])
