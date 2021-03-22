@@ -22,4 +22,4 @@ with open(argv[1], "r") as file:
             middleName = name[1]
             lastName = name[2]
 
-        db.execute("INSERT INTO students (first, middle, last, house, birth) VALUES(?, ?, ?, ?, ?)", firstName, middleName, lastName, row["house"], int(row["birth"]))
+        db.execute("INSERT INTO students(first, middle, last, house, birth) VALUES(?, ?, ?, ?, ?)", firstName, middleName, lastName, row["house"], int(row["birth"]))
