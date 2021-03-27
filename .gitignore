@@ -55,6 +55,6 @@ node_modules/
 
 .vscode/
 
-./cs50/6/files/
 files/
 database/
+images/
