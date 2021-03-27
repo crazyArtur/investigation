@@ -3,14 +3,36 @@ html, body {
     margin: 0;
 }
 
-.hero-image {
-    background-image: url("./images/IMG_0075.JPG");
-
+header {
     height: 50%;
-    background-position: center;
+}
+
+.hero-image-container{
+    height: 100%;
+}
+
+.hero-image-one,
+.hero-image-two,
+.hero-image-three {
+    height: 100%;
+    width: 100%;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+}
+
+.hero-image-one {
+    background-image: url("./images/IMG_0075.JPG");
+}
+
+.hero-image-two {
+    background-image: url("./images/IMG_0076.JPG");
+    animation: slideTwoAnim 20s infinite;
+}
+
+.hero-image-three {
+    background-image: url("./images/IMG_0077.JPG");
+    animation: slideThreeAnim 20s infinite;
 }
 
 .hero-text {
@@ -20,4 +42,21 @@ html, body {
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
+}
+
+@keyframes slideTwoAnim {
+    0%{opacity:0;}
+    17%{opacity:0;}
+    33%{opacity:1;}
+    50%{opacity:1;}
+    67%{opacity:0;}
+    100%{opacity:0;}
+}
+
+@keyframes slideThreeAnim {
+    0%{opacity:0;}
+    50%{opacity:0;}
+    67%{opacity:1;}
+    83%{opacity:1;}
+    100%{opacity:0;}
 }
