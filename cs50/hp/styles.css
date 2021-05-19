@@ -6,3 +6,12 @@ html, body {
     height: 100%;
     background-color: #f3f3f3;
 }
+
+.main-banner {
+    margin: 0 auto;
+    width: 1200px;
+    height: 400px;
+    background-color: #fff;
+    overflow: hidden;
+    position: relative;
+}
