@@ -10,6 +10,7 @@
 </head>
 <body>
     <header class="main-banner" id="main-banner">
+        <div class="imgBanBtn imgBanBtn-prev" id="imgBanBtn-prev"></div>
         <div class="imgBan" id="imgBan3">
 
         </div>
@@ -20,7 +21,7 @@
 
         </div>
 
-
+        <div class="imgBanBtn imgBanBtn-next" id="imgBanBtn-next"></div>
     </header>
 
         Hello me, lalalalalal
@@ -43,6 +44,12 @@ var startBannerLoop = setInterval(function() {
 
         document.getElementById("main-banner").onmouseenter = function() {
             clearInterval(startBannerLoop);
+        }
+
+        document.getElementById("main-banner").onmouseleave = function() {
+            startBannerLoop = setInterval(function() {
+            bannerLoop();
+        }, bannerTimer);
         }
 
         function bannerLoop() {
