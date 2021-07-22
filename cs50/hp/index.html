@@ -12,13 +12,23 @@
     <header class="main-banner" id="main-banner">
         <div class="imgBanBtn imgBanBtn-prev" id="imgBanBtn-prev"></div>
         <div class="imgBan" id="imgBan3">
+            <div class="imgBan-box">
+                <h2>Index file Ban3</h2>
+                <p>Paragraph in Ban3</p>
+            </div>
 
         </div>
         <div class="imgBan" id="imgBan2">
-
+            <div class="imgBan-box">
+                <h2>Index file Ban2</h2>
+                <p>Paragraph in Ban2</p>
+            </div>
         </div>
         <div class="imgBan" id="imgBan1">
-
+            <div class="imgBan-box">
+                <h2>Index file Ban1</h2>
+                <p>Paragraph in Ban1</p>
+            </div>
         </div>
 
         <div class="imgBanBtn imgBanBtn-next" id="imgBanBtn-next"></div>
@@ -38,7 +48,7 @@
             bannerLoop();
         }
 
-var startBannerLoop = setInterval(function() {
+        var startBannerLoop = setInterval(function() {
             bannerLoop();
         }, bannerTimer);
 
@@ -49,7 +59,24 @@ var startBannerLoop = setInterval(function() {
         document.getElementById("main-banner").onmouseleave = function() {
             startBannerLoop = setInterval(function() {
             bannerLoop();
-        }, bannerTimer);
+            }, bannerTimer);
+        }
+
+        document.getElementById("imgBanBtn-prev").onclick = function() {
+            if (bannerStatus === 1) {
+                bannerStatus = 2;
+            }
+            else if (bannerStatus === 2) {
+                bannerStatus = 3;
+            }
+            else if (bannerStatus === 3) {
+                bannerStatus = 1;
+            }
+            bannerLoop();
+        }
+
+        document.getElementById("imgBanBtn-next").onclick = function() {
+            bannerLoop();
         }
 
         function bannerLoop() {

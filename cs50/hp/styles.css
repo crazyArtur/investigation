@@ -60,7 +60,7 @@ html, body {
     cursor: pointer;
 }
 
-.imgBanBtn {
+.imgBanBtn:hover {
     opacity: 0.9;
 }
 
@@ -78,4 +78,34 @@ html, body {
     background-size: 60%;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.main-banner .imgBan-box h2 {
+    font-family: arial;
+    font-size: 60px;
+    color: #fff;
+}
+
+.main-banner .imgBan-box p {
+    padding-top: 6px;
+    font-family: arial;
+    font-size: 16px;
+    color: #fff;
+}
+
+.main-banner #imgBan1 .imgBan-box {
+    padding-top: 70px;
+    padding-right: 100px;
+    float: right;
+    text-align: right;
+}
+
+.main-banner #imgBan2 .imgBan-box {
+    padding-top: 220px;
+    padding-left: 100px;
+}
+
+.main-banner #imgBan3 .imgBan-box {
+    padding-top: 220px;
+    padding-left: 100px;
 }
