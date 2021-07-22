@@ -2,14 +2,39 @@
     margin: 0;
     padding: 0;
 }
-html, body {
+ body {
+    display: flex;
+    flex-direction: column;
     height: 100%;
-    background-color: #f3f3f3;
+    background-color: royalblue;
+    max-width: 1400px;
+    margin: auto;
+}
+
+/* .content {
+    max-width: ;
+} */
+
+a {
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    font-family: fantasy;
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    min-width: 75px;
+    text-align: center;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .main-banner {
     margin: 0 auto;
-    width: 1200px;
+    width: 1400px;
     height: 400px;
     background-color: #fff;
     overflow: hidden;

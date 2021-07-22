@@ -1,134 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css" />
     <title>Document</title>
-</head>
-<body>
-    <header class="main-banner" id="main-banner">
+  </head>
+  <body>
+      <header class="main-banner" id="main-banner">
         <div class="imgBanBtn imgBanBtn-prev" id="imgBanBtn-prev"></div>
         <div class="imgBan" id="imgBan3">
-            <div class="imgBan-box">
-                <h2>Index file Ban3</h2>
-                <p>Paragraph in Ban3</p>
-            </div>
-
+          <div class="imgBan-box">
+            <h2>Index file Ban3</h2>
+            <p>Paragraph in Ban3</p>
+          </div>
         </div>
         <div class="imgBan" id="imgBan2">
-            <div class="imgBan-box">
-                <h2>Index file Ban2</h2>
-                <p>Paragraph in Ban2</p>
-            </div>
+          <div class="imgBan-box">
+            <h2>Index file Ban2</h2>
+            <p>Paragraph in Ban2</p>
+          </div>
         </div>
         <div class="imgBan" id="imgBan1">
-            <div class="imgBan-box">
-                <h2>Index file Ban1</h2>
-                <p>Paragraph in Ban1</p>
-            </div>
+          <div class="imgBan-box">
+            <h2>Index file Ban1</h2>
+            <p>Paragraph in Ban1</p>
+          </div>
         </div>
 
         <div class="imgBanBtn imgBanBtn-next" id="imgBanBtn-next"></div>
-    </header>
+      </header>
+      <nav class="navbar">
+        <a href="./about.html">About</a>
+        <a href="./gallery.html">Gallery</a>
+        <a href="./games.html">Games</a>
+        <a href="./news.html">News</a>
+        <a href="./contact.html">Contact</a>
+      </nav>
 
-        Hello me, lalalalalal
+      Hello me, lalalalalal
 
-    <footer>
-        
-    </footer>
+      <footer></footer>
 
     <script>
-        var bannerStatus = 1;
-        var bannerTimer = 10000;
+      var bannerStatus = 1;
+      var bannerTimer = 10000;
 
-        window.onload = function() {
-            bannerLoop();
-        }
+      window.onload = function () {
+        bannerLoop();
+      };
 
-        var startBannerLoop = setInterval(function() {
-            bannerLoop();
+      var startBannerLoop = setInterval(function () {
+        bannerLoop();
+      }, bannerTimer);
+
+      document.getElementById("main-banner").onmouseenter = function () {
+        clearInterval(startBannerLoop);
+      };
+
+      document.getElementById("main-banner").onmouseleave = function () {
+        startBannerLoop = setInterval(function () {
+          bannerLoop();
         }, bannerTimer);
+      };
 
-        document.getElementById("main-banner").onmouseenter = function() {
-            clearInterval(startBannerLoop);
+      document.getElementById("imgBanBtn-prev").onclick = function () {
+        if (bannerStatus === 1) {
+          bannerStatus = 2;
+        } else if (bannerStatus === 2) {
+          bannerStatus = 3;
+        } else if (bannerStatus === 3) {
+          bannerStatus = 1;
         }
+        bannerLoop();
+      };
 
-        document.getElementById("main-banner").onmouseleave = function() {
-            startBannerLoop = setInterval(function() {
-            bannerLoop();
-            }, bannerTimer);
+      document.getElementById("imgBanBtn-next").onclick = function () {
+        bannerLoop();
+      };
+
+      function bannerLoop() {
+        if (bannerStatus === 1) {
+          document.getElementById("imgBan2").style.opacity = "0";
+          setTimeout(function () {
+            document.getElementById("imgBan1").style.right = "0px";
+            document.getElementById("imgBan1").style.zIndex = "1000";
+            document.getElementById("imgBan2").style.right = "-1400px";
+            document.getElementById("imgBan2").style.zIndex = "1500";
+            document.getElementById("imgBan3").style.right = "1400px";
+            document.getElementById("imgBan3").style.zIndex = "500";
+          }, 500);
+          setTimeout(function () {
+            document.getElementById("imgBan2").style.opacity = "1";
+          }, 1000);
+          bannerStatus = 2;
+        } else if (bannerStatus === 2) {
+          document.getElementById("imgBan3").style.opacity = "0";
+          setTimeout(function () {
+            document.getElementById("imgBan2").style.right = "0px";
+            document.getElementById("imgBan2").style.zIndex = "1000";
+            document.getElementById("imgBan3").style.right = "-1400px";
+            document.getElementById("imgBan3").style.zIndex = "1500";
+            document.getElementById("imgBan1").style.right = "1400px";
+            document.getElementById("imgBan1").style.zIndex = "500";
+          }, 500);
+          setTimeout(function () {
+            document.getElementById("imgBan3").style.opacity = "1";
+          }, 1000);
+          bannerStatus = 3;
+        } else if (bannerStatus === 3) {
+          document.getElementById("imgBan1").style.opacity = "0";
+          setTimeout(function () {
+            document.getElementById("imgBan3").style.right = "0px";
+            document.getElementById("imgBan3").style.zIndex = "1000";
+            document.getElementById("imgBan1").style.right = "-1400px";
+            document.getElementById("imgBan1").style.zIndex = "1500";
+            document.getElementById("imgBan2").style.right = "1400px";
+            document.getElementById("imgBan2").style.zIndex = "500";
+          }, 500);
+          setTimeout(function () {
+            document.getElementById("imgBan1").style.opacity = "1";
+          }, 1000);
+          bannerStatus = 1;
         }
-
-        document.getElementById("imgBanBtn-prev").onclick = function() {
-            if (bannerStatus === 1) {
-                bannerStatus = 2;
-            }
-            else if (bannerStatus === 2) {
-                bannerStatus = 3;
-            }
-            else if (bannerStatus === 3) {
-                bannerStatus = 1;
-            }
-            bannerLoop();
-        }
-
-        document.getElementById("imgBanBtn-next").onclick = function() {
-            bannerLoop();
-        }
-
-        function bannerLoop() {
-            if (bannerStatus === 1) {
-                document.getElementById("imgBan2").style.opacity = "0";
-                setTimeout(function() {
-                    document.getElementById("imgBan1").style.right = "0px";
-                    document.getElementById("imgBan1").style.zIndex = "1000";
-                    document.getElementById("imgBan2").style.right = "-1200px";
-                    document.getElementById("imgBan2").style.zIndex = "1500";
-                    document.getElementById("imgBan3").style.right = "1200px";
-                    document.getElementById("imgBan3").style.zIndex = "500";
-                }, 500);
-                setTimeout(function() {
-                    document.getElementById("imgBan2").style.opacity = "1";
-                }, 1000);
-                bannerStatus = 2;
-            }
-
-            else if (bannerStatus === 2) {
-                document.getElementById("imgBan3").style.opacity = "0";
-                setTimeout(function() {
-                    document.getElementById("imgBan2").style.right = "0px";
-                    document.getElementById("imgBan2").style.zIndex = "1000";
-                    document.getElementById("imgBan3").style.right = "-1200px";
-                    document.getElementById("imgBan3").style.zIndex = "1500";
-                    document.getElementById("imgBan1").style.right = "1200px";
-                    document.getElementById("imgBan1").style.zIndex = "500";
-                }, 500);
-                setTimeout(function() {
-                    document.getElementById("imgBan3").style.opacity = "1";
-                }, 1000);
-                bannerStatus = 3;
-            }
-
-            else if (bannerStatus === 3) {
-                document.getElementById("imgBan1").style.opacity = "0";
-                setTimeout(function() {
-                    document.getElementById("imgBan3").style.right = "0px";
-                    document.getElementById("imgBan3").style.zIndex = "1000";
-                    document.getElementById("imgBan1").style.right = "-1200px";
-                    document.getElementById("imgBan1").style.zIndex = "1500";
-                    document.getElementById("imgBan2").style.right = "1200px";
-                    document.getElementById("imgBan2").style.zIndex = "500";
-                }, 500);
-                setTimeout(function() {
-                    document.getElementById("imgBan1").style.opacity = "1";
-                }, 1000);
-                bannerStatus = 1;
-            }
-        }
+      }
     </script>
-    
-</body>
+  </body>
 </html>
